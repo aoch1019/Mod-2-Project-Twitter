@@ -1,0 +1,6 @@
+<%= form_for [@user, @tweet] do |f| %>
+<%= f.hidden_field :user_id, value: params[:user_id] %>
+<%= f.label :content %>
+<%= f.text_field :content %>
+<%= f.submit %>
+<% end %>

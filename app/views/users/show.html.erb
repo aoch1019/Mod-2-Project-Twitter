@@ -1,0 +1,12 @@
+<h1>Welcome to the profile of:
+    <%= @user.name %>
+</h1>
+
+<h2> <% @user.tweets.each do |tweet| %>
+     <%= tweet.content %><br>
+     <%  end %>
+</h2>
+
+<h2> <%= link_to "Create a Tweet", new_user_tweet_path(@user) %> </h2>
+
+<h3> <%= link_to "View all users", users_path %> </h3>
