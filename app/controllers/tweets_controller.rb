@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   def index
-    @tweets = User.find(params[:user_id]).tweets
+    @tweets = User.find(params[:id]).tweets
   end
 
   def show
@@ -9,8 +9,8 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
     @tweet = Tweet.new
+    @user = User.find(params[:user_id])
   end
 
   def create

@@ -3,7 +3,7 @@
 </h1>
 
 <h2> <% @user.tweets.each do |tweet| %>
-     <%= tweet.content %><br>
+     <%= link_to tweet.content, user_tweet_path(tweet.user, tweet) %><br>
      <%  end %>
 </h2>
 

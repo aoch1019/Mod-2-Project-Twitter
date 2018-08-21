@@ -11,4 +11,6 @@ user1 = User.create(name: "Andrew Och", email: "andrew@gmail.com")
 user2 = User.create(name: "Ann Kim", email: "ann@gmail.com")
 user3 = User.create(name: "Ali Och", email: "ali@gmail.com")
 
-Tweet.create(content: "Hello World!", user: user1)
+tweet1 = Tweet.create(content: "Hello World!", user: user1)
+
+comment1 = Comment.create(content: "Hello", tweet: tweet1, user: user1)

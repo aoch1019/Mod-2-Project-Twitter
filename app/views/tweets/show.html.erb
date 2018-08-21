@@ -1,0 +1,4 @@
+<h1><%= @tweet.content %>
+  <% byebug %>
+  <%= link_to "View comments", user_tweet_comments(@tweet.user, @tweet, @tweet.comments) %>
+</h1>
