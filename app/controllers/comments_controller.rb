@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
     @comments = Tweet.find(params[:tweet_id]).comments
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
   def new
     @comment = Comment.new
     @user = User.find(params[:user_id])
@@ -13,7 +17,11 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
+      if params[:comment][:origin] == "user_show"
+        redirect_to user_path(@comment.tweet.user)
+      else
+        redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
+      end
     else
       render :new
     end

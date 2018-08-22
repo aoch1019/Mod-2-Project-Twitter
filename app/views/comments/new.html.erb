@@ -2,6 +2,7 @@
 
   <%= f.hidden_field :user_id, value: session[:user_id] %>
   <%= f.hidden_field :tweet_id, value: params[:tweet_id] %>
+  <%= f.hidden_field :origin, value: params[:origin] %>
 
   <%= f.label :content %>
   <%= f.text_field :content %>

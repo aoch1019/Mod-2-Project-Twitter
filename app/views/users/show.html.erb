@@ -16,10 +16,16 @@
 <br>Tweets feed:<br>
 <h4><% @user.tweets.each do |tweet| %>
      <%= "-------------------------------------" %><br>
-     <%= link_to tweet.content, user_tweet_path(tweet.user, tweet) %><br>
+     <h2><%= link_to tweet.content, user_tweet_path(tweet.user, tweet) %><br></h2>
      <h6> <%= "#{tweet.num_likes} like(s)" %> </h6>
-     <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet) %><br>
-     <%= button_to "Add a comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get %><br>
+     <h6> <% tweet.comments.reverse.each_with_index do |comment, index| %>
+          <%  break if index > 4 %>
+          <%= link_to "#{comment.user.name}:", user_path(comment.user) %>
+          <%= link_to "#{comment.content}", user_tweet_comment_path(@user, tweet, comment) %><br>
+          <% end %>
+     </h6>
+     <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %><br>
+     <%= button_to "Add a comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get, params: {origin: "user_show"} %><br>
      <%= "-------------------------------------" %><br>
      <%  end %>
 </h4>

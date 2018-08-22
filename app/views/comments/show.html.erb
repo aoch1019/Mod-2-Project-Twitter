@@ -1,0 +1,11 @@
+*************************************** <br><br>
+
+<%= "#{@comment.user.name} said:"%><br>
+<h3>
+<%= "#{@comment.content}" %><br>
+</h3>
+<%= "on #{@comment.created_at.to_date}" %><br><br>
+
+*************************************** <br>
+
+<%= link_to "Go to Tweet", user_tweet_path(params[:user_id], params[:tweet_id]) %>

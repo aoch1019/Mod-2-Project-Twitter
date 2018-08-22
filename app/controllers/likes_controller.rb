@@ -12,7 +12,11 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(user_id: session[:user_id], tweet_id: params[:tweet_id])
     if @like.save
-      redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
+      if params[:origin] == "user_show"
+        redirect_to user_path(@like.tweet.user)
+      else
+        redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
+      end
     else
       flash[:notice] = "You already liked this Tweet"
       redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
