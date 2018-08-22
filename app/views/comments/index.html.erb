@@ -1,5 +1,9 @@
 <% @comments.each do |comment| %>
-  <%= comment.content %><br>
+  <%= "#{comment.user.name} said:"%><br>
+  <h3>
+  <%= "#{comment.content}" %><br>
+  </h3>
+  <%= "on #{comment.created_at.to_date}" %><br>
 <% end %>
-
+<br>
 <%= link_to "Return to Tweet", user_tweet_path(params[:user_id], params[:tweet_id]) %>

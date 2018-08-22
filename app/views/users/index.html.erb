@@ -1,9 +1,11 @@
-<h1>Please choose your Account:</h1>
+<h1>Please choose a profile:</h1>
 <h2><% @users.each do |user| %>
     <%= link_to user.name, user %><br>
     <% end %>
 </h2>
 
-<h3>Dont have an Account?
-    <%= link_to "Create one here", new_user_path %>
+<% if !logged_in? %>
+<h3><%="Dont have an Account?" %>
+    <%= link_to "Create one here", signup_path %>
 </h3>
+<% end %>

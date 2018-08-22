@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
+  skip_before_action :authorized, only: [:index, :new, :create]
+  before_action :find_user, only: [:show]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
+    render :show
+  end
+
+  def profile
+    @user = User.find_by(id: session[:user_id])
+    render :show
   end
 
   def new
@@ -16,16 +23,40 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Signup successful. Welcome!"
-      redirect_to @user
+      session[:user_id] = @user.id
+      redirect_to profile_path
     else
       render :new
     end
   end
 
+  def edit
+    render :edit
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated profile"
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = "Deleted account for #{@user.username}"
+    redirect_to new_user_path
+  end
+
   private
 
+  def find_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :profile_pic)
   end
 
 end

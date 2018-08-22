@@ -1,9 +1,15 @@
+<h1>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %><br>
+</h1>
+
 <h1>Welcome to the profile of:
     <%= @user.name %>
 </h1>
 
 <% if @user.profile_pic %>
-<%= image_tag @user.profile_pic %>
+<%= image_tag @user.profile_pic, :size => "280x180" %>
 <% end %>
 
 <br>
@@ -18,6 +24,10 @@
      <%  end %>
 </h4>
 <br><br>
-<%= link_to "Create a Tweet", new_user_tweet_path(@user) %><br>
 
 <%= link_to "View all users", users_path %>
+
+<% if @user == current_user %>
+  <%= link_to "Create a Tweet", new_user_tweet_path(@user) %><br><br>
+  <%= button_to "Delete Account", @user, method: :delete %>
+<% end %>
