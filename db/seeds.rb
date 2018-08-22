@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(name: "Andrew Och", email: "andrew@gmail.com")
-user2 = User.create(name: "Ann Kim", email: "ann@gmail.com")
-user3 = User.create(name: "Ali Och", email: "ali@gmail.com")
+user1 = User.create(name: "Andrew Och", email: "andrew@gmail.com", password_digest: "andrew")
+user2 = User.create(name: "Ann Kim", email: "ann@gmail.com", password_digest: "ann")
+user3 = User.create(name: "Ali Och", email: "ali@gmail.com", password_digest: "ali")
 
 tweet1 = Tweet.create(content: "Hello World!", user: user1)
 

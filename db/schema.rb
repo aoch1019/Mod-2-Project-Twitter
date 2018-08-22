@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_140032) do
+ActiveRecord::Schema.define(version: 2018_08_22_163531) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_140032) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "profile_pic", default: "http://www.clker.com/cliparts/B/R/Y/m/P/e/blank-profile-hi.png"
   end
 
 end
