@@ -1,8 +1,11 @@
+<%= link_to "View all users", users_path %>
+
 <h1>
   <% if flash[:notice] %>
     <%= flash[:notice] %>
   <% end %><br>
 </h1>
+
 
 <h1>Welcome to the profile of:
     <%= @user.name %>
@@ -12,8 +15,11 @@
 <%= image_tag @user.profile_pic, :size => "280x180" %>
 <% end %>
 
-<br>
-<br>Tweets feed:<br>
+<br><br>
+<h2>
+Tweets feed:<br>
+</h2>
+
 <h4><% @user.tweets.each do |tweet| %>
      <%= "-------------------------------------" %><br>
      <h2><%= link_to tweet.content, user_tweet_path(tweet.user, tweet) %><br></h2>
@@ -22,6 +28,7 @@
           <%  break if index > 4 %>
           <%= link_to "#{comment.user.name}:", user_path(comment.user) %>
           <%= link_to "#{comment.content}", user_tweet_comment_path(@user, tweet, comment) %><br>
+          <%= image_tag comment.user.profile_pic, :size => "35x24" %><br>
           <% end %>
      </h6>
      <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %><br>
@@ -30,8 +37,6 @@
      <%  end %>
 </h4>
 <br><br>
-
-<%= link_to "View all users", users_path %>
 
 <% if @user == current_user %>
   <%= link_to "Create a Tweet", new_user_tweet_path(@user) %><br><br>
