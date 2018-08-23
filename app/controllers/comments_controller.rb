@@ -19,6 +19,8 @@ class CommentsController < ApplicationController
     if @comment.save
       if params[:comment][:origin] == "user_show"
         redirect_to user_path(@comment.tweet.user)
+      elsif params[:origin] == "feed"
+        redirect_to feed_path
       else
         redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
       end

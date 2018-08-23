@@ -14,6 +14,8 @@ class LikesController < ApplicationController
     if @like.save
       if params[:origin] == "user_show"
         redirect_to user_path(@like.tweet.user)
+      elsif params[:origin] == "feed"
+        redirect_to feed_path
       else
         redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
       end
