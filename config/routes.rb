@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end  
+
   get '/profile', to: 'users#profile', as: 'profile'
   get '/profile/edit', to: 'users#edit', as: 'edit_profile'
 
