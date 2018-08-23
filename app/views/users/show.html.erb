@@ -12,12 +12,12 @@
 </h1>
 
 <% if @user.profile_pic %>
-<%= image_tag @user.profile_pic, :size => "280x180" %>
+  <%= image_tag @user.profile_pic, :size => "280x180" %>
 <% end %>
 
 <br><br>
 <h2>
-Tweets feed:<br>
+  Tweets feed:<br>
 </h2>
 
 <h4><% @user.tweets.each do |tweet| %>

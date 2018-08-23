@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout 'login'
   skip_before_action :authorized, except: :destroy
 
   def new

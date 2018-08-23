@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+/***************** login *******************/
+* {
+  font-family: Helvetica;
+  background-size: cover;
+}
+
+.login {
+  background: linear-gradient(white, #429cd6);
+  background-size: cover;
+  height: 100%;
+  min-height: 100%;
+}
+
+/***************** users page *******************/
+h1 {
+  color: black;
+}
+
+.user-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+}
+
+/***************** tweets page *******************/

@@ -1,12 +1,16 @@
 <center>
 <h1>Please choose a profile to view:</h1>
-<h2><% @users.each do |user| %>
-    <%= link_to user.name, user %>
-    <% if logged_in? && user.id == session[:user_id] %>
-    <%= "(You)" %>
-    <% end %><br>
-    <%= image_tag user.profile_pic, :size => "140x100" %><br>
+
+<h2>
+  <div class="user-gallery">
+    <% @users.each do |user| %>
+      <div class="user"><%= link_to user.name, user %>
+        <% if logged_in? && user.id == session[:user_id] %>
+          <%= "(You)" %>
+        <% end %><br>
+        <%= image_tag user.profile_pic, :size => "140x100" %><br></div>
     <% end %>
+  </div>
 </h2>
 
 <% if !logged_in? %>

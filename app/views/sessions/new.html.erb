@@ -1,17 +1,21 @@
+<div class="login-page">
 <br>
 <h1>
   <% if flash[:notice] %>
     <%= flash[:notice] %>
   <% end %><br>
 </h1>
+  <%= form_tag login_path, method: :post do %>
+    <%= label_tag "Email" %>
+    <%= text_field_tag :email %>
 
-<%= form_tag login_path, method: :post do %>
-  <%= label_tag "Email" %>
-  <%= text_field_tag :email %>
-  <%= label_tag "Password" %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Sign In" %>
-<% end %>
+    <%= label_tag "Password" %>
+    <%= password_field_tag :password %>
+
+    <%= submit_tag "Sign In" %>
+  <% end %>
+<br>
 
 <%= link_to "Return to users page", users_path %><br>
-<%= link_to "Signup", signup_path %>
+<%= link_to "Sign Up", signup_path %>
+</div>
