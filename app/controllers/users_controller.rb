@@ -61,8 +61,30 @@ class UsersController < ApplicationController
     render 'show_following'
   end
 
+  def feed
+    @tweets = randomize_order(current_user.tweets_followed)
+  end
 
   private
+
+  def randomize_order(tweets)
+    random_order = []
+
+    counter = 0
+    chosen_nums = []
+
+    until counter == tweets.length
+      random_index = rand(0..(tweets.length-1))
+      until chosen_nums.include?(random_index) == false
+        random_index = rand(0..(tweets.length-1))
+      end
+      chosen_nums << random_index
+      random_order << tweets[random_index]
+      counter += 1
+    end
+
+    return random_order
+  end
 
   def find_user
     @user = User.find(params[:id])

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'users#profile', as: 'profile'
   get '/profile/edit', to: 'users#edit', as: 'edit_profile'
+  get '/feed', to: 'users#feed', as: 'feed'
 
   get "signup", to: "users#new", as: "signup"
   get "login", to: "sessions#new", as: "login"

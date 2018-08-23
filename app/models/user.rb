@@ -34,4 +34,14 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def tweets_followed
+    tweets_array = []
+    following.each do |user|
+      user.tweets.each do |tweet|
+        tweets_array << tweet
+      end
+    end
+    return tweets_array
+  end
+
 end
