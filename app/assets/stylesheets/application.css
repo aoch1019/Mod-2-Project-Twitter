@@ -21,7 +21,7 @@
 }
 
 .login {
-  background: linear-gradient(white, #429cd6);
+  background: linear-gradient(#429cd6, white);
   background-size: cover;
   height: 100%;
   min-height: 100%;
