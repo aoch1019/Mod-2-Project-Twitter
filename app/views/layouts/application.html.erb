@@ -11,12 +11,13 @@
 
   <body>
     <% if logged_in? %>
-      <%= "Logged in as #{current_user.name} (#{current_user.email})" %><br>
-      <%= link_to "Logout", logout_path, method: :delete %>
-      <%= link_to "News Feed", feed_path %>
-      <%= link_to "View all users", users_path %>
-      <%= link_to "Your Profile", profile_path %>
-      <%= link_to "Edit Profile", edit_profile_path %><br><br>
+      <%= "Logged in as #{current_user.name} (#{current_user.email})" %>
+      <%= link_to "Logout", logout_path, method: :delete %> |
+      <%= link_to "News Feed", feed_path %> |
+      <%= link_to "View all users", users_path %> |
+      <%= link_to "Your Profile", profile_path %> |
+      <%= link_to "Edit Profile", edit_profile_path %>
+      <br><br>
     <% else %>
       <%= link_to "Login", login_path %>
     <% end %>

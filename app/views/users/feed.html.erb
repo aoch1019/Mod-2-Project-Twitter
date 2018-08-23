@@ -4,7 +4,11 @@
           <%= image_tag tweet.user.profile_pic, :size => "90x80" %></h2>
      <h2> <%= tweet.content %></h2>
      <h4> <%= link_to "View Tweet", user_tweet_path(tweet.user, tweet) %><br></h4>
-     <h6> <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %> </h6>
+     <h6> <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %>
+          <% tweet.likes.each do |like| %>
+          <%= image_tag like.user.profile_pic, :size => "22x17" %>
+          <% end %>
+     </h6>
      <h6> <% tweet.comments.reverse.each_with_index do |comment, index| %>
           <%  break if index > 4 %>
           <%= link_to "#{comment.user.name}:", user_path(comment.user) %>
