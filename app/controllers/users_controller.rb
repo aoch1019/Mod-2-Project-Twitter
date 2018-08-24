@@ -63,7 +63,13 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @tweets = randomize_order(current_user.tweets_followed)
+    if params[:origin] == "feed"
+      @tweets = params[:feed_order].map do |tweet_id|
+        Tweet.find(tweet_id.to_i)
+      end
+    else
+      @tweets = randomize_order(current_user.tweets_followed)
+    end
   end
 
   private
