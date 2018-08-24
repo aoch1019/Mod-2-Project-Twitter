@@ -63,6 +63,5 @@
 <br><br>
 
 <% if @user == current_user %>
-  <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %><br>
-  <%= button_to "Delete Account", @user, method: :delete %>
+  <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %>
 <% end %>
