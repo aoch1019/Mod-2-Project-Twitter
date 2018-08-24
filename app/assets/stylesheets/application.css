@@ -22,20 +22,136 @@
 
 .login {
   background: linear-gradient(#429cd6, white);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   height: 100%;
   min-height: 100%;
 }
 
-/***************** users page *******************/
+.signin_button {
+   width: 10%;
+   height: 40px;
+   margin: 10px auto 30px;
+   border-radius: 5px;
+   background-color: #163d77;
+   color: #ffffff;
+   font-size: 16px;
+}
+
+.login-form input{
+  width: 10%;
+  padding: 10px 0px 10px 6px;
+  margin-bottom: 5px;
+}
+
+.flitter-logo {
+  width: 300px;
+}
+
+/***************** sign-up page *******************/
+
+.signup-form input{
+  width: 10%;
+  padding: 10px 0px 10px 6px;
+  margin-bottom: 5px;
+}
+
+.sign-up {
+  color: #163d77;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/***************** all users page *******************/
 h1 {
-  color: black;
+  color: #163d77;
+  margin-top: 50px;
 }
 
 .user-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 15px;
 }
 
-/***************** tweets page *******************/
+/******************* nav bar ********************/
+
+.nav-bar ul{
+    z-index: 10000;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #429cd6;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    left: 0px;
+ }
+
+ .nav-bar p{
+   display: block;
+   color: white;
+   text-align: center;
+   text-decoration: none;
+   font-family: Helvetica,Arial,sans-serif;
+   font-weight: 800;
+   padding: 0px 16px 0px 16px;
+   float: left;
+   font-size: 14px;
+ }
+
+ .nav-bar li {
+   display: block;
+   color: white;
+   text-align: center;
+   text-decoration: none;
+   font-family: Helvetica,Arial,sans-serif;
+   font-weight: 100;
+   font-size: 14px;
+   border-left: 1px solid #bbb;
+   float: right;
+ }
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Helvetica,Arial,sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+ }
+
+ li a:hover {
+     background-color: #163d77;
+ }
+
+/***************** individual users page *******************/
+div.fleets-card {
+  background-color: white;
+  padding: 10px red;
+  width: 40%;
+}
+
+.background {
+  background: #d6e9f6;
+}
+
+
+
+/***************** edit page *******************/
+.edit-name {
+  padding: 70px;
+  color: #163d77;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+}
+/***************** fleets *******************/
+
+/***************** user's fleets page *******************/

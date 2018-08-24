@@ -2,8 +2,8 @@
 <center>
   <html>
     <head>
-      <h1><title>Twitter Project</title></h1>
-      <link rel="stylesheet" href="././stylesheets/application.css">
+      <h1><title>Flitter</title></h1>
+      <link rel="stylesheet" href="../stylesheets/application.css">
 
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
@@ -13,14 +13,22 @@
     </head>
 
     <body class="login">
-      <% if logged_in? %>
-        <%= "Logged in as #{current_user.name} (#{current_user.email})" %><br>
-        <%= link_to "Logout", logout_path, method: :delete %>
-        <%= link_to "Your Profile", profile_path %>
-        <%= link_to "Edit Profile", edit_profile_path %><br><br>
-      <% else %>
-        <%= link_to "Login", login_path %>
-      <% end %>
+      <nav class="nav-bar">
+        <ul>
+          <% if logged_in? %>
+            <p><%= "Logged in as #{current_user.name} (#{current_user.email})" %></p>
+            <li><%= link_to "Logout", logout_path, method: :delete %></li>
+            <li><%= link_to "News Feed", feed_path %></li>
+            <li><%= link_to "View all users", users_path %></li>
+            <li><%= link_to "Your Profile", profile_path %></li>
+            <li><%= link_to "Edit Profile", edit_profile_path %></li>
+          <br><br>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Sign In", login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
       <%= yield %>
     </body>
   </html>

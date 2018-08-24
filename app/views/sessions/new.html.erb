@@ -4,18 +4,19 @@
   <% if flash[:notice] %>
     <%= flash[:notice] %>
   <% end %><br>
+  <%= image_tag "flitter.png", class: "flitter-logo" %>
 </h1>
+
+<div class="login-form">
   <%= form_tag login_path, method: :post do %>
-    <%= label_tag "Email" %>
-    <%= text_field_tag :email %>
+    <%= text_field_tag :email, nil, placeholder: "Email" %><br>
 
-    <%= label_tag "Password" %>
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password, nil, placeholder: "Password" %><br>
 
-    <%= submit_tag "Sign In" %>
-  <% end %>
-<br>
+    <button class="signin_button" type="submit" value="sign In">Submit</button>
+  <% end %><br>
+</div>
 
-<%= link_to "Return to users page", users_path %><br>
-<%= link_to "Sign Up", signup_path %>
+<!--  <%= link_to "Return to users page", users_path %><br>
+ <%= link_to "Sign Up", signup_path %> -->
 </div>

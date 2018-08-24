@@ -1,21 +1,18 @@
-<center>
 <h1>Please choose a profile to view:</h1>
 
-<h2>
   <div class="user-gallery">
     <% @users.each do |user| %>
-      <div class="user"><%= link_to user.name, user %>
+      <div class="user"><h2><%= link_to user.name, user %>
         <% if logged_in? && user.id == session[:user_id] %>
           <%= "(You)" %>
-        <% end %><br>
-        <%= image_tag user.profile_pic, :size => "140x100" %><br></div>
+        <% end %></h2>
+        <%= image_tag user.profile_pic, :size => "250x200" %></div>
     <% end %>
   </div>
-</h2>
+
 
 <% if !logged_in? %>
 <h3><%="Dont have an Account?" %>
     <%= link_to "Create one here", signup_path %>
 </h3>
 <% end %>
-</center>
