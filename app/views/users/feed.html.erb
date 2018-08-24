@@ -1,5 +1,9 @@
+<% tweet_indexes = @tweets.map do |tweet| %>
+<% tweet.id %>
+<% end %>
+
 <% @tweets.each do |tweet| %>
-  <div class="fleets-card">
+<div class="fleets-card">
      <h2 class="users-name">
        <%= "#{tweet.user.name}:" %> <br>
        <%= image_tag tweet.user.profile_pic, :size => "90x80" %>
@@ -31,7 +35,20 @@
        <% else %>
         <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "feed", feed_order: @tweets}) %>
        <% end %>
-       <%= button_to "Add a comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get, params: {origin: "feed"} %><br>
-     </div>
+       <br>
+
+       <%= form_for [tweet.user, tweet, @comment] do |f| %>
+
+        <%= f.hidden_field :user_id, value: session[:user_id] %>
+        <%= f.hidden_field :tweet_id, value: tweet.id %>
+        <%= f.hidden_field :origin, value: "feed" %>
+        <%= f.hidden_field :feed_order, value: tweet_indexes %>
+
+        <%= f.text_field :content, placeholder: "Comment Here"  %><br>
+
+        <%= f.submit "Add Comment"%><br><br>
+
+      <% end %>
+    </div>
   <% end %>
 <br><br>
