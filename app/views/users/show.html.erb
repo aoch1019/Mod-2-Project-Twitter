@@ -57,10 +57,19 @@
       <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %>
       <% end %>
       <br>
-     <%= button_to "Add Comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get, params: {origin: "user_show"} %><br>
-  </div>
+      <%= form_for [@user, tweet, @comment] do |f| %>
+
+       <%= f.hidden_field :user_id, value: session[:user_id] %>
+       <%= f.hidden_field :tweet_id, value: tweet.id %>
+       <%= f.hidden_field :origin, value: "user_show" %>
+
+       <%= f.text_field :content, placeholder: "Comment Here"  %><br>
+
+       <%= f.submit "Add Comment"%><br><br>
+
+     <% end %>
+   </div>
 <%  end %>
-<br><br>
 
 <% if @user == current_user %>
   <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %>
