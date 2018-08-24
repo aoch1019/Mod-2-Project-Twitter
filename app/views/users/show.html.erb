@@ -1,39 +1,42 @@
 <h1>
   <% if flash[:notice] %>
     <%= flash[:notice] %>
-  <% end %><br>
+  <% end %>
 </h1>
 
+<div class="split left">
+  <div class="centered">
+    <h1>
+      <%= @user.name %>
+    </h1>
 
-<h1>
-  <%= @user.name %>
-</h1>
+    <% if @user.profile_pic %>
+      <%= image_tag @user.profile_pic, :size => "280x180" %>
+    <% end %>
+    <br><br>
 
-<% if @user.profile_pic %>
-  <%= image_tag @user.profile_pic, :size => "280x180" %>
-<% end %>
-<br><br>
+    <%= "#{@user.followers.count}" %> <%= link_to "Followers", followers_user_path(@user) %><br>
+      <% @user.followers.each do |follower| %>
+      <%= image_tag follower.profile_pic, :size => "15x15" %>
+    <% end %>
+    <br>
 
-<%= "#{@user.followers.count}" %> <%= link_to "Followers", followers_user_path(@user) %><br>
-  <% @user.followers.each do |follower| %>
-  <%= image_tag follower.profile_pic, :size => "15x15" %>
-<% end %>
-<br>
-
-<%= "#{@user.following.count}" %> <%= link_to "Following", following_user_path(@user) %><br>
-  <% @user.following.each do |following| %>
-  <%= image_tag following.profile_pic, :size => "15x15" %>
-<% end %>
-<br><br>
+    <%= "#{@user.following.count}" %> <%= link_to "Following", following_user_path(@user) %><br>
+      <% @user.following.each do |following| %>
+      <%= image_tag following.profile_pic, :size => "15x15" %>
+    <% end %>
+    <br><br>
+  </div>
+</div>
 
 
 <%= render 'follow_form' if logged_in? %>
 
-<br>
+<div class="split right">
+  <div class="centered">
 <h2>
   Fleets feed:
 </h2>
-
 
 <% @user.tweets.each do |tweet| %>
   <div class="fleets-card">
@@ -52,12 +55,22 @@
           <% end %>
      </h6>
      <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %><br>
-     <%= button_to "Add Comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get, params: {origin: "user_show"} %><br>
+     <%= form_for [@user, tweet, @comment] do |f| %>
+
+       <%= f.hidden_field :user_id, value: session[:user_id] %>
+       <%= f.hidden_field :tweet_id, value: tweet.id %>
+       <%= f.hidden_field :origin, value: "user_show" %>
+
+       <%= f.text_field :content, placeholder: "Comment Here"  %><br>
+
+       <%= f.submit "Add Comment"%><br><br>
+
+     <% end %>
+
   </div>
 <%  end %>
-<br><br>
 
 <% if @user == current_user %>
-  <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %><br>
+  <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %>
   <%= button_to "Delete Account", @user, method: :delete %>
 <% end %>

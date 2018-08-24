@@ -7,11 +7,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     render :show
   end
 
   def profile
     @user = User.find_by(id: session[:user_id])
+    @comment = Comment.new
     render :show
   end
 
@@ -32,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    render :edit
+    render :layout => 'login'
   end
 
   def update

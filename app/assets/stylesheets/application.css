@@ -57,13 +57,17 @@
   margin-bottom: 5px;
 }
 
-.sign-up {
-  color: #163d77;
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
+#name-field {
+  margin-top: 20px;
 }
 
+.sign-up {
+  margin-top: 100px;
+  color: #163d77;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+}
 
 /***************** all users page *******************/
 h1 {
@@ -134,24 +138,23 @@ li a {
 /***************** individual users page *******************/
 div.fleets-card {
   background-color: white;
-  padding: 10px red;
-  width: 40%;
+  width: 30%;
+  margin: 20px;
 }
 
 .background {
   background: #d6e9f6;
 }
 
-
-
 /***************** edit page *******************/
 .edit-name {
-  padding: 70px;
+  margin-top: 100px;
   color: #163d77;
   font-size: 28px;
   text-align: center;
   font-weight: bold;
 }
 /***************** fleets *******************/
+
 
 /***************** user's fleets page *******************/
