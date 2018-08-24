@@ -19,8 +19,9 @@ class CommentsController < ApplicationController
     if @comment.save
       if params[:comment][:origin] == "user_show"
         redirect_to user_path(@comment.tweet.user)
-      elsif params[:origin] == "feed"
-        redirect_to feed_path
+      elsif params[:comment][:origin] == "feed"
+        tweets = convert_tweet_indexes(params[:comment][:feed_order])
+        redirect_to feed_path(params: {origin: "feed", feed_order: tweets})
       else
         redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
       end
@@ -30,6 +31,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def convert_tweet_indexes(index_string)
+    index_string.split(" ")
+  end
 
   def comment_params
     params.require(:comment).permit(:content, :tweet_id, :user_id)

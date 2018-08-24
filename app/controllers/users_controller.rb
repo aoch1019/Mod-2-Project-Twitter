@@ -64,6 +64,7 @@ class UsersController < ApplicationController
   end
 
   def feed
+    @comment = Comment.new
     if params[:origin] == "feed"
       @tweets = params[:feed_order].map do |tweet_id|
         Tweet.find(tweet_id.to_i)
