@@ -15,7 +15,7 @@ class LikesController < ApplicationController
       if params[:origin] == "user_show"
         redirect_to user_path(@like.tweet.user)
       elsif params[:origin] == "feed"
-        redirect_to feed_path
+        redirect_to feed_path(params: {origin: "feed", feed_order: params[:feed_order]})
       else
         redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
       end
@@ -24,6 +24,19 @@ class LikesController < ApplicationController
       redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
     end
   end
+
+  def destroy
+    like = Like.find(params[:id])
+    like.destroy
+    if params[:origin] == "user_show"
+      redirect_to user_path(like.tweet.user)
+    elsif params[:origin] == "feed"
+      redirect_to feed_path(params: {origin: "feed", feed_order: params[:feed_order]})
+    else
+      redirect_to user_tweet_path(User.find(params[:user_id]), Tweet.find(params[:tweet_id]))
+    end
+  end
+
 
   # private
   #

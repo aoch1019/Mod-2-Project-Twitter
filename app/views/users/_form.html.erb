@@ -1,3 +1,4 @@
+<div class="signup-form">
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <ul>
@@ -7,19 +8,23 @@
     </ul>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+<div class="signup-form">
+  <%= f.text_field :name, placeholder: "Name" %><br>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.text_field :email, placeholder: "Email" %><br>
 
-  <%= f.label :profile_picture %>
-  <%= f.text_field :profile_pic %>
+  <%= f.password_field :password, placeholder: "Password" %><br>
 
-  <%= f.submit %>
+  <%= f.text_field :profile_pic, placeholder: "Profile Picture" %><br>
+
+  <button class="signin_button" type="submit" value="sign In">Submit</label>
+</div>
+  <% if @user == current_user %>
+  <%= button_to "Delete Account", @user, method: :delete %>
+  <% end %>
 <% end %>
 
-<%= link_to "Return to users page", users_path %>
+
+
+<!-- <%= link_to "Return to users page", users_path %> -->
