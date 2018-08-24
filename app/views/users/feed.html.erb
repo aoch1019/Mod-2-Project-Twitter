@@ -1,17 +1,14 @@
-
 <% @tweets.each do |tweet| %>
-     <h2>
+  <div class="fleets-card">
+     <h2 class="users-name">
        <%= "#{tweet.user.name}:" %> <br>
        <%= image_tag tweet.user.profile_pic, :size => "90x80" %>
      </h2>
 
-     <h2>
        <%= tweet.content %>
-     </h2>
 
-     <h4>
-       <%= link_to "View Tweet", user_tweet_path(tweet.user, tweet) %><br>
-     </h4>
+     <br>
+       <%= button_to "View Tweet", user_tweet_path(tweet.user, tweet) %>
 
      <h6>
        <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %>
@@ -29,8 +26,12 @@
           <% end %>
      </h6>
 
-       <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "feed"}) %><br>
+       <% if tweet.likes.find_by(user: current_user) %>
+        <%= button_to "Unlike", user_tweet_like_path(tweet.user, tweet, tweet.likes.find_by(user: current_user), params: {origin: "feed", feed_order: @tweets}), :method => :delete %>
+       <% else %>
+        <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "feed", feed_order: @tweets}) %>
+       <% end %>
        <%= button_to "Add a comment", new_user_tweet_comment_path(tweet.user, tweet), :method => :get, params: {origin: "feed"} %><br>
-     <%  end %>
-
+     </div>
+  <% end %>
 <br><br>

@@ -20,6 +20,12 @@
 
   <button class="signin_button" type="submit" value="sign In">Submit</label>
 </div>
+
+  <% if @user == current_user %>
+    <%= button_to "Delete Account", @user, method: :delete %>
+  <% end %>
 <% end %>
+
+
 
 <!-- <%= link_to "Return to users page", users_path %> -->

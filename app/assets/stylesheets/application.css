@@ -72,7 +72,6 @@
 /***************** all users page *******************/
 h1 {
   color: #163d77;
-  margin-top: 50px;
 }
 
 .user-gallery {
@@ -146,6 +145,11 @@ div.fleets-card {
   background: #d6e9f6;
 }
 
+.fleets-content {
+  padding-top: 20px;
+  color: #163d77;
+}
+
 /***************** edit page *******************/
 .edit-name {
   margin-top: 100px;
@@ -155,6 +159,13 @@ div.fleets-card {
   font-weight: bold;
 }
 /***************** fleets *******************/
+h2 {
+  color: #163d77;
+}
 
+.users-name {
+  color: #163d77;
+  padding-top: 20px;
+}
 
 /***************** user's fleets page *******************/

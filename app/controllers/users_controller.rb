@@ -47,8 +47,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:notice] = "Deleted account for #{@user.username}"
+    user = User.find(params[:id])
+    user.destroy
     redirect_to new_user_path
   end
 
@@ -65,7 +65,13 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @tweets = randomize_order(current_user.tweets_followed)
+    if params[:origin] == "feed"
+      @tweets = params[:feed_order].map do |tweet_id|
+        Tweet.find(tweet_id.to_i)
+      end
+    else
+      @tweets = randomize_order(current_user.tweets_followed)
+    end
   end
 
   private
@@ -96,5 +102,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :profile_pic)
   end
-
 end

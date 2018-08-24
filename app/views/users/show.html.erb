@@ -4,43 +4,42 @@
   <% end %>
 </h1>
 
-<div class="split left">
-  <div class="centered">
-    <h1>
-      <%= @user.name %>
-    </h1>
+<h1>
+  <%= @user.name %>
+</h1>
 
-    <% if @user.profile_pic %>
-      <%= image_tag @user.profile_pic, :size => "280x180" %>
-    <% end %>
-    <br><br>
+<% if @user.profile_pic %>
+  <%= image_tag @user.profile_pic, :size => "280x180" %>
+<% end %>
+<br><br>
 
-    <%= "#{@user.followers.count}" %> <%= link_to "Followers", followers_user_path(@user) %><br>
-      <% @user.followers.each do |follower| %>
-      <%= image_tag follower.profile_pic, :size => "15x15" %>
-    <% end %>
-    <br>
+<%= "#{@user.followers.count}" %> <%= link_to "Followers", followers_user_path(@user) %><br>
+  <% @user.followers.each do |follower| %>
+  <%= image_tag follower.profile_pic, :size => "15x15" %>
+<% end %>
+<br>
 
-    <%= "#{@user.following.count}" %> <%= link_to "Following", following_user_path(@user) %><br>
-      <% @user.following.each do |following| %>
-      <%= image_tag following.profile_pic, :size => "15x15" %>
-    <% end %>
-    <br><br>
-  </div>
-</div>
+<%= "#{@user.following.count}" %> <%= link_to "Following", following_user_path(@user) %><br>
+  <% @user.following.each do |following| %>
+  <%= image_tag following.profile_pic, :size => "15x15" %>
+<% end %>
+<br><br>
 
 
 <%= render 'follow_form' if logged_in? %>
 
-<div class="split right">
-  <div class="centered">
+<% if @user == current_user %>
+  <button class="signin_button" type="submit" value="create a fleet">Create a Fleet</button>
+<% end %>
+<br>
 <h2>
-  Fleets feed:
+  Fleets Feed:
 </h2>
+
 
 <% @user.tweets.each do |tweet| %>
   <div class="fleets-card">
-     <h2> <%= tweet.content %></h2>
+     <h2 class="fleets-content"> <%= tweet.content %></h2>
      <h4> <%= link_to "View Tweet", user_tweet_path(tweet.user, tweet) %><br></h4>
      <h6> <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %>
           <% tweet.likes.each do |like| %>
@@ -54,8 +53,13 @@
             <%= image_tag comment.user.profile_pic, :size => "35x24" %><br>
           <% end %>
      </h6>
-     <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %><br>
-     <%= form_for [@user, tweet, @comment] do |f| %>
+     <% if tweet.likes.find_by(user: current_user) %>
+      <%= button_to "Unlike", user_tweet_like_path(tweet.user, tweet, tweet.likes.find_by(user: current_user), params: {origin: "user_show"}), :method => :delete %>
+     <% else %>
+      <%= button_to "Like", user_tweet_likes_path(tweet.user, tweet, params: {origin: "user_show"}) %>
+      <% end %>
+      <br>
+      <%= form_for [@user, tweet, @comment] do |f| %>
 
        <%= f.hidden_field :user_id, value: session[:user_id] %>
        <%= f.hidden_field :tweet_id, value: tweet.id %>
@@ -66,11 +70,5 @@
        <%= f.submit "Add Comment"%><br><br>
 
      <% end %>
-
-  </div>
+   </div>
 <%  end %>
-
-<% if @user == current_user %>
-  <%= button_to "Create a Tweet", new_user_tweet_path(@user), method: :get %>
-  <%= button_to "Delete Account", @user, method: :delete %>
-<% end %>
