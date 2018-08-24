@@ -29,7 +29,7 @@
 <%= render 'follow_form' if logged_in? %>
 
 <% if @user == current_user %>
-  <button class="signin_button" type="submit" value="create a fleet">Create a Fleet</button>
+  <%= button_to "Create a Fleet", new_user_tweet_path(@user), method: :get %>
 <% end %>
 <br>
 <h2>
@@ -40,7 +40,7 @@
 <% @user.tweets.each do |tweet| %>
   <div class="fleets-card">
      <h2 class="fleets-content"> <%= tweet.content %></h2>
-     <h4> <%= link_to "View Tweet", user_tweet_path(tweet.user, tweet) %><br></h4>
+     <h4> <%= button_to "View Tweet", user_tweet_path(tweet.user, tweet), method: :get %><br></h4>
      <h6> <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %>
           <% tweet.likes.each do |like| %>
             <%= image_tag like.user.profile_pic, :size => "22x17" %>

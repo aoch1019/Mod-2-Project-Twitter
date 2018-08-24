@@ -12,7 +12,7 @@
        <%= tweet.content %>
 
      <br>
-       <%= button_to "View Tweet", user_tweet_path(tweet.user, tweet) %>
+       <%= button_to "View Tweet", user_tweet_path(tweet.user, tweet), method: :get %>
 
      <h6>
        <%= link_to "#{tweet.num_likes} likes", user_tweet_likes_path(tweet.user, tweet) %>

@@ -18,12 +18,10 @@
 
   <%= f.text_field :profile_pic, placeholder: "Profile Picture" %><br>
 
-  <button class="signin_button" type="submit" value="sign In">Submit</label>
+  <button class="signin_button" type="submit" value="sign In">Submit</button>
 </div>
 
-  <% if @user == current_user %>
-    <%= button_to "Delete Account", @user, method: :delete %>
-  <% end %>
+
 <% end %>
 
 
