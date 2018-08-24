@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     render :show
   end
 
